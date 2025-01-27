@@ -17,7 +17,7 @@ const Stats = () => {
                     setStats(prevStats => ({ ...prevStats, followers: prevStats.followers + 1 }));
                 }}
                     onContextMenu={e => {
-                    e.preventDefault(); // Предотвращаем контекстное меню
+                    e.preventDefault();
                     setStats(prevStats => ({ ...prevStats, followers: Math.max(prevStats.followers - 1, 0) }));
                 }}>
                     Followers: {stats.followers}
