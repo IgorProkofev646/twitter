@@ -3,8 +3,7 @@ import {useContext} from "react";
 import {TwitterContext} from "../utils/context.js";
 
 const Stats = () => {
-    const {user, stats, setStats} = useContext(TwitterContext);
-
+    const {user, stats, changeStats} = useContext(TwitterContext);
 
     return (
         <div className={'user-stats'}>
@@ -13,24 +12,20 @@ const Stats = () => {
                 {user.name}
             </div>
             <div className={'stats'}>
-                <div onClick={() => {
-                    setStats(prevStats => ({ ...prevStats, followers: prevStats.followers + 1 }));
-                }}
-                    onContextMenu={e => {
-                    e.preventDefault();
-                    setStats(prevStats => ({ ...prevStats, followers: Math.max(prevStats.followers - 1, 0) }));
-                }}>
-                    Followers: {stats.followers}
-                </div>
-                <div onClick={() => {
-                    setStats(prevStats => ({...prevStats, following: prevStats.following + 1 }));
-                }}
-                        onContextMenu={e =>{
+                <div
+                    onClick={() => changeStats('followers', 1)}
+                    onContextMenu={(e) => {
                         e.preventDefault();
-                        setStats(prevStats => ({ ...prevStats, following: Math.max(prevStats.following - 1, 0) }));
-                    }}>
-                    Following: {stats.following}
-                </div>
+                        changeStats('followers', -1);
+                    }}
+                >Followers: {stats.followers}</div>
+                <div
+                    onClick={() => changeStats('following', 1)}
+                    onContextMenu={(e) => {
+                        e.preventDefault();
+                        changeStats('following', -1);
+                    }}
+                >Following: {stats.following}</div>
             </div>
         </div>
     );

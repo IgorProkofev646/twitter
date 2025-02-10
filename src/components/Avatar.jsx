@@ -10,15 +10,15 @@ const Avatar = ({size}) => {
                 const url = prompt('Enter new avatar url');
                 changeAvatar(url);
             }}
-            onContextMenu={e =>{
+            onContextMenu={e => {
                 e.preventDefault();
                 const name = prompt('Enter new name');
                 changeName(name);
             }}
             className={`user-avatar ${size ?? ''}`}
-             src={user.avatar}
-             alt={user.name} />
-
+            src={user.avatar}
+            alt={user.name}
+        />
     );
 };
 
